@@ -1,0 +1,91 @@
+{
+  "name": "ratelimit-kit",
+  "version": "1.0.0",
+  "description": "Runtime-agnostic, store-pluggable rate limiter with standards-compliant headers for Node & Edge.",
+  "license": "MIT",
+  "type": "module",
+  "author": "Claude Assistant",
+  "homepage": "https://github.com/user/ratelimit-kit",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/user/ratelimit-kit.git"
+  },
+  "bugs": {
+    "url": "https://github.com/user/ratelimit-kit/issues"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./express": {
+      "types": "./dist/middleware/express.d.ts",
+      "import": "./dist/middleware/express.js",
+      "require": "./dist/middleware/express.cjs"
+    },
+    "./hono": {
+      "types": "./dist/middleware/hono.d.ts",
+      "import": "./dist/middleware/hono.js",
+      "require": "./dist/middleware/hono.cjs"
+    },
+    "./store/redis": {
+      "types": "./dist/store/redis.d.ts",
+      "import": "./dist/store/redis.js",
+      "require": "./dist/store/redis.cjs"
+    },
+    "./store/memory": {
+      "types": "./dist/store/memory.d.ts",
+      "import": "./dist/store/memory.js",
+      "require": "./dist/store/memory.cjs"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "rm -rf dist && tsc && rollup -c",
+    "dev": "tsc -w",
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "test:watch": "vitest",
+    "lint": "eslint src --ext .ts",
+    "lint:fix": "eslint src --ext .ts --fix",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "npm run typecheck && npm run lint && npm run test && npm run build"
+  },
+  "keywords": [
+    "rate limit",
+    "ratelimit",
+    "rate-limiting",
+    "throttling",
+    "redis",
+    "edge",
+    "express",
+    "fastify",
+    "hono",
+    "middleware",
+    "headers",
+    "token bucket",
+    "sliding window",
+    "typescript",
+    "serverless"
+  ],
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^25.0.7",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@types/express": "^4.17.23",
+    "@typescript-eslint/eslint-plugin": "^7.18.0",
+    "@typescript-eslint/parser": "^7.18.0",
+    "@vitest/coverage-v8": "^2.1.9",
+    "eslint": "^8.57.1",
+    "rollup": "^4.9.0",
+    "tslib": "^2.6.3",
+    "typescript": "^5.4.0",
+    "vitest": "^2.0.0"
+  },
+  "peerDependencies": {
+    "express": "^4.18.0 || ^5.0.0-0",
+    "hono": "^4.0.0"
+  }
+}
